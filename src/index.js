@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Car from './App';
+import HeaderContainer from './DeletableHeader'
+import MyForm from './Form'
+import TemperatureConverter from './TemperatureConverter'
+import LengthConverter from './LengthConverter'
+import WeightConverter from './WeightConverter'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class Body extends React.Component {
+    render() {
+        return (
+            <div>
+                <div><LengthConverter/></div>
+                <div><WeightConverter/></div>
+                <div><TemperatureConverter/></div>
+            </div>
+        )
+    }
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+ReactDOM.render(<Body/>, document.getElementById('root'));
