@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+import ValueInput from './ValueInput'
+import ConverterContainer from './ConverterContainer'
 
 const scales = {m: 'meters', ft: 'feet'}
 
@@ -9,26 +11,6 @@ function toMeters(feet) {
 function toFeet(meters) {
     if (isNaN(meters)) return '';
     return Math.round(meters * 3.2808 * 10) / 10;
-}
-
-class LengthInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(e) {
-        this.props.onLengthChange(e.target.value);
-    }
-
-    render() {
-        return (
-            <div>
-                <p>Length in {scales[this.props.scale]}:</p>
-                <input value={this.props.length} onChange={this.handleChange}/>
-            </div>
-        )
-    }
 }
 
 class LengthConverter extends React.Component {
@@ -45,6 +27,7 @@ class LengthConverter extends React.Component {
     handleFeetChange(length) {
         this.setState({scale: 'ft', length})
     }
+    
     render() {
         let length = this.state.length;
         let scale = this.state.scale;
@@ -52,13 +35,10 @@ class LengthConverter extends React.Component {
         let feetLength = scale === 'm' ? toFeet(length) : length;
 
         return (
-            <div style={{float: 'left'}}>
-                <fieldset style={{width: '330px'}}>
-                    <legend><h3>Length converter</h3></legend>
-                    <LengthInput scale='m' length={metersLength} onLengthChange={this.handleMetersChange}/>
-                    <LengthInput scale='ft' length={feetLength} onLengthChange={this.handleFeetChange}/>
-                </fieldset>
-            </div>
+            <ConverterContainer valueName='Lenght'>
+                <ValueInput valueName = 'Length' scale = {scales['m']} value={metersLength} onValueChange={this.handleMetersChange}/>
+                <ValueInput valueName = 'Length' scale = {scales['ft']} value={feetLength} onValueChange={this.handleFeetChange}/>
+            </ConverterContainer>
         )
     }
 }

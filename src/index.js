@@ -1,8 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Car from './App';
-import HeaderContainer from './DeletableHeader'
-import MyForm from './Form'
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 import TemperatureConverter from './TemperatureConverter'
 import LengthConverter from './LengthConverter'
 import WeightConverter from './WeightConverter'
@@ -18,6 +16,5 @@ class Body extends React.Component {
         )
     }
 }
-
 
 ReactDOM.render(<Body/>, document.getElementById('root'));

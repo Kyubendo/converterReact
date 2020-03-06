@@ -1,4 +1,8 @@
 import React from 'react'
+import ValueInput from './ValueInput'
+import ConverterContainer from './ConverterContainer'
+
+const scales = {kg: 'kilograms', lbs: 'pounds'}
 
 function toKg(lbs) {
     if (isNaN(lbs)) return '';
@@ -17,31 +21,24 @@ class WeightConverter extends React.Component {
         this.state = {scale: 'kg', weight: 0};
     }
 
-    kgChangeHandle(e) {
-        this.setState({scale: 'kg', weight: e.target.value});
-
+    kgChangeHandle(weight) {
+        this.setState({scale: 'kg', weight});
     }
-    lbsChangeHandle(e) {
-        this.setState({scale: 'lbs', weight: e.target.value});
+    lbsChangeHandle(weight) {
+        this.setState({scale: 'lbs', weight});
     }
 
     render() {
-
         let weight = this.state.weight;
         let scale = this.state.scale;
         let kgWeight = scale === 'lbs' ? toKg(weight) : weight;
         let lbsWeight = scale === 'kg' ? toLbs(weight) : weight;
 
         return (
-            <div style={{float: 'left'}}>
-                <fieldset style={{width: '350px'}}>
-                <legend><h3>Weight converter</h3></legend>
-                    <p>Weight in kilograms:</p>
-                    <input name='kg' value={kgWeight}  onChange={this.kgChangeHandle}/>
-                    <p>Weight in pounds:</p>
-                    <input name='lbs' value={lbsWeight} onChange={this.lbsChangeHandle}/>
-                </fieldset>
-            </div>
+            <ConverterContainer valueName = 'Weight'>
+                <ValueInput valueName = 'Weight' scale = {scales['kg']} value={kgWeight} onValueChange={this.kgChangeHandle}/>
+                <ValueInput valueName = 'Weight' scale = {scales['lbs']} value={lbsWeight} onValueChange={this.lbsChangeHandle}/>
+            </ConverterContainer>
         )
     }
 }
