@@ -2,9 +2,9 @@ import React from 'react'
 
 function ConverterContainer(props) {
     return(
-        <div style={{float: 'left', margin: '10px 20px 0px 0px'}}>
-            <fieldset style={{width: '330px'}}>
-            <legend><h3 style={{margin: '10px 0px'}}>{props.valueName} converter</h3></legend>
+        <div className="converter">
+            <fieldset>
+            <legend><h3 className="converterName">{props.valueName} converter</h3></legend>
                 {props.children}
             </fieldset>
         </div>
